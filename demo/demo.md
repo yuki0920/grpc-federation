@@ -33,36 +33,39 @@ export DOCKER_HOST=unix://$HOME/.docker/run/docker.sock
 
 ## grpcurl での動作確認
 
-`./bin/grpcurl` は `demo/bin/` にあるので、`demo/` 配下で実行する想定。
+`grpcurl` は以下のいずれかを使う想定。コマンド例では `grpcurl` と表記（必要に応じて `./bin/grpcurl` に読み替え）。
+
+- `make tools` で `demo/bin/grpcurl` を入れて `./bin/grpcurl` として実行（`demo/` 配下で）
+- 既に `$GOPATH/bin` 等に `grpcurl` が入っているならそれを利用
 
 ### サービス一覧 / メソッド一覧（reflection）
 
 ```sh
-./bin/grpcurl -plaintext localhost:3000 list
-./bin/grpcurl -plaintext localhost:3000 list swapi.SWAPI
-./bin/grpcurl -plaintext localhost:3000 describe swapi.SWAPI.GetPerson
+grpcurl -plaintext localhost:3000 list
+grpcurl -plaintext localhost:3000 list swapi.SWAPI
+grpcurl -plaintext localhost:3000 describe swapi.SWAPI.GetPerson
 ```
 
 ### 単体取得
 
 ```sh
-./bin/grpcurl -plaintext -d '{"id": 1}' localhost:3000 swapi.SWAPI/GetPerson
-./bin/grpcurl -plaintext -d '{"id": 1}' localhost:3000 swapi.SWAPI/GetFilm
-./bin/grpcurl -plaintext -d '{"id": 1}' localhost:3000 swapi.SWAPI/GetPlanet
-./bin/grpcurl -plaintext -d '{"id": 1}' localhost:3000 swapi.SWAPI/GetStarship
-./bin/grpcurl -plaintext -d '{"id": 1}' localhost:3000 swapi.SWAPI/GetSpecies
-./bin/grpcurl -plaintext -d '{"id": 1}' localhost:3000 swapi.SWAPI/GetVehicle
+grpcurl -plaintext -d '{"id": 1}' localhost:3000 swapi.SWAPI/GetPerson
+grpcurl -plaintext -d '{"id": 1}' localhost:3000 swapi.SWAPI/GetFilm
+grpcurl -plaintext -d '{"id": 1}' localhost:3000 swapi.SWAPI/GetPlanet
+grpcurl -plaintext -d '{"id": 1}' localhost:3000 swapi.SWAPI/GetStarship
+grpcurl -plaintext -d '{"id": 1}' localhost:3000 swapi.SWAPI/GetSpecies
+grpcurl -plaintext -d '{"id": 1}' localhost:3000 swapi.SWAPI/GetVehicle
 ```
 
 ### 一覧取得（List 系）
 
 ```sh
-./bin/grpcurl -plaintext -d '{}' localhost:3000 swapi.SWAPI/ListPeople
-./bin/grpcurl -plaintext -d '{}' localhost:3000 swapi.SWAPI/ListFilms
-./bin/grpcurl -plaintext -d '{}' localhost:3000 swapi.SWAPI/ListPlanets
-./bin/grpcurl -plaintext -d '{}' localhost:3000 swapi.SWAPI/ListStarships
-./bin/grpcurl -plaintext -d '{}' localhost:3000 swapi.SWAPI/ListSpecies
-./bin/grpcurl -plaintext -d '{}' localhost:3000 swapi.SWAPI/ListVehicles
+grpcurl -plaintext -d '{}' localhost:3000 swapi.SWAPI/ListPeople
+grpcurl -plaintext -d '{}' localhost:3000 swapi.SWAPI/ListFilms
+grpcurl -plaintext -d '{}' localhost:3000 swapi.SWAPI/ListPlanets
+grpcurl -plaintext -d '{}' localhost:3000 swapi.SWAPI/ListStarships
+grpcurl -plaintext -d '{}' localhost:3000 swapi.SWAPI/ListSpecies
+grpcurl -plaintext -d '{}' localhost:3000 swapi.SWAPI/ListVehicles
 ```
 
 ### トレース確認
